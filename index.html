@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моніторинг ДБЖ</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <h1>Система безперебійного живлення</h1>
+        <p>Остання оновлення: <span id="lastUpdate" aria-live="polite">--:--:--</span></p>
+    </header>
+
+    <main>
+
+        <section class="controls" aria-label="Панель керування">
+            <button id="update" class="btn btn-primary" onclick="manualUpdate()">Оновити дані</button>
+            <button id="autoUpdate" class="btn btn-primary" onclick="autoUpdate()">Автооновлення</button>
+            <button id="export" class="btn btn-primary" onclick="exportCSV()">Експорт CSV</button>
+            <span id="autoStatus" aria-live="polite">Статус: Вимкнено</span>
+        </section>
+
+        <section class="dashboard" aria-label="Панель моніторингу параметрів">
+            <div class="card">
+                <h3>Напруга входу</h3>
+                <div><span id="param0" class="big-number">0</span> <span class="unit">В</span></div>
+                <div id="status0" class="status-indicator">●</div>
+            </div>
+
+            <div class="card">
+                <h3>Напруга виходу</h3>
+                <div><span id="param1" class="big-number">0</span> <span class="unit">В</span></div>
+                <div id="status1" class="status-indicator">●</div>
+            </div>
+
+            <div class="card">
+                <h3>Навантаження</h3>
+                <div><span id="param2" class="big-number">0</span> <span class="unit">%</span></div>
+                <div id="status2" class="status-indicator">●</div>
+            </div>
+
+            <div class="card">
+                <h3>Заряд батареї</h3>
+                <div><span id="param3" class="big-number">0</span> <span class="unit">%</span></div>
+                <div id="status3" class="status-indicator">●</div>
+            </div>
+
+            <div class="card">
+                <h3>Режим роботи</h3>
+                <div><span id="paramMode" class="big-number" style="font-size: 32px;">Мережа</span></div>
+                <div id="statusMode" class="status-indicator">●</div>
+            </div>
+
+            <div class="card">
+                <h3>Частота виходу</h3>
+                <div><span id="param4" class="big-number">0</span> <span class="unit">Гц</span></div>
+                <div id="status4" class="status-indicator">●</div>
+            </div>
+
+            <div class="card">
+                <h3>Температура системи</h3>
+                <div><span id="param5" class="big-number">0</span> <span class="unit">°C</span></div>
+                <div id="status5" class="status-indicator">●</div>
+            </div>
+        </section>
+
+        <section class="chart-section" aria-label="Графік зміни параметрів">
+            <div class="chart-container">
+                <canvas id="upsChart"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p style="margin-bottom: 8px;"><strong>Примітка:</strong> Всі значення параметрів ДБЖ на цій сторінці згенеровані випадковим чином.</p>
+        <p>Дані використовуються виключно для демонстраційних цілей.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>
