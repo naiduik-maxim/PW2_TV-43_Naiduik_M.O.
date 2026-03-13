@@ -11,6 +11,7 @@ let autoInterval;
 let isAuto = false;
 let history = [];
 let upsChart;
+let margin = 2;
 
 /**
  * Відтворює звуковий сигнал тривоги.
@@ -33,7 +34,6 @@ function playCriticalSound() {
  */
 function generateSensorData() {
     let numericData = limits.map(param => {
-        const margin = (param.max - param.min) * 0.2;
         let val = Math.random() * ((param.max + margin) - (param.min - margin)) + (param.min - margin);
         if (param.isInt && val < 0) val = 0;
         return param.isInt ? Math.round(val) : parseFloat(val.toFixed(1));
